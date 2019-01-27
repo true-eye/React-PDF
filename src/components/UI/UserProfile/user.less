@@ -1,0 +1,57 @@
+.container {
+  align-items: center;
+  box-sizing: content-box;
+  display: flex;
+  flex-grow: 1;
+  padding: 12px 0;
+}
+
+.column {
+  flex-direction: column;
+}
+
+.photo__wrapper {
+  flex: 0 0 30%;
+  padding: 5px 0 5px 20px;
+  text-align: right;
+}
+
+.photo {
+  background-color: @white;
+  border-radius: 50%;
+  border: 1px solid @border-grey;
+  max-height:100%; 
+  max-width:100%;
+}
+
+.details {
+  flex: 0 0 70%;
+  padding: 0 20px;
+}
+
+.name, .role {
+  font-size: 22px;
+  line-height: 30px;
+  margin: 1px 0;
+}
+
+.name {
+  font-weight: bold;
+}
+
+// Over ride style for column display (Manaage account pages)
+.column {
+  justify-content: center;
+
+  .photo__wrapper {
+    padding: 0;
+  }
+
+  .details {
+    flex: 0 1 70px;
+  }
+  
+  .name, .role {
+    text-align: center;
+  }
+}

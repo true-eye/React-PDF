@@ -1,0 +1,42 @@
+
+.wrapper {
+  box-sizing: border-box;
+  padding: 50px;
+  margin: 0 0 50px 0;
+  min-height: 100vh;
+  min-height: calc(100vh - 50px);
+  position: relative;
+  &:after {
+    display: block;
+    bottom: -10px;
+    content: 'Copyright © 2019 by the Institute of Service Excellence at SMU. All rights reserved.';
+    font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-size: 14px;
+    left: 50%;
+    margin: 0 auto;
+    position: absolute;
+    text-align: center;
+    transform: translateX(-50%);
+    white-space: pre;
+  }
+
+  @media (max-width: 1500px) {
+    margin: 0 0 80px 0;
+    min-height: calc(100vh - 80px);
+    &:after {
+      bottom: -40px;
+      content: 'Copyright © 2019 by the Institute of Service \A Excellence at SMU. All rights reserved.';
+    }
+  }
+  // Fixed until it is responsive
+  width: 1498px;
+}
+
+.page__subtitle {
+  font-size: 16px;
+}
+
+.page__title {
+  font-size: 30px;
+  font-weight: bold;
+}

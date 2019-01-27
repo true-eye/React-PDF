@@ -1,0 +1,10 @@
+*.log
+node_modules
+dist
+.DS_Store
+.idea
+build/
+*.sublime-*
+.firebase
+deepstream/*_data/
+yarn.lock

@@ -1,0 +1,56 @@
+.container {
+  background-color: @white;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  list-style: none;
+  margin: 0;
+  min-height: 500px;
+  padding: 0;
+}
+
+.item {
+  align-items: center;
+  border-left: 5px solid @white;
+  color: @text-black;
+  display: flex;
+  margin: 0 0 6px 0;
+  padding: 22px 0;
+  &:hover {
+    color: @black;
+    text-decoration: none;
+  }
+  &:last-child {
+    margin: auto 0 16px 0;
+  }
+  &:visited {
+    color: @text-black;
+  }
+}
+
+.profile {
+  padding: 6px 0;
+}
+
+.icon {
+  flex-basis: 30%;
+  text-align: right;
+  height: 25px;
+}
+
+.label {
+  flex-basis: 70%;
+  padding: 0 20px;
+  font-size: 16px;
+  font-weight: bold;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.active {
+  background-color: @light-brown;
+  border-left: 5px solid @dark-brown;
+  &:focus {
+    text-decoration: none;
+  }
+}
