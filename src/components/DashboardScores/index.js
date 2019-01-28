@@ -270,24 +270,56 @@ class DashboardScores extends Component<Props> {
 
   async printDocument() {
     const pdf = new jsPDF('p', 'mm', 'a4');
+    window.html2canvas = html2canvas
 
     var page_title = document.getElementById('store');
     var page = 0, row = 0, col = 0;
+    var ptRow = 20, ptCol = 10;
+    var comHeight = 0, comWidth = 0;
+
+    var h2_dashboard = page_title.previousSibling.previousSibling.previousSibling
+
+    await html2canvas(h2_dashboard)
+        .then((canvas) => {
+          const imgData = canvas.toDataURL('png');
+          pdf.addImage(imgData, 'png', ptCol + 5, ptRow, canvas.width / 8, canvas.height / 8);
+          ptRow += canvas.height / 8 + 5;
+        });
+      
+    var dashboard_title = h2_dashboard.nextSibling;
+
+    await html2canvas(dashboard_title)
+        .then((canvas) => {
+          const imgData = canvas.toDataURL('png');
+          pdf.addImage(imgData, 'png', ptCol + 5, ptRow, canvas.width / 8, canvas.height / 8);
+          ptRow += canvas.height / 8 + 5;
+        });
 
     while(page_title) {
+
+      await html2canvas(page_title)
+        .then((canvas) => {
+          const imgData = canvas.toDataURL('png');
+          pdf.addImage(imgData, 'png', ptCol + 5, ptRow, canvas.width / 8, canvas.height / 8);
+          ptRow += canvas.height / 8 + 5;
+        });
+
       var ant_row = page_title.nextSibling;
       var ant_col_8 = ant_row.firstChild;
       while(ant_col_8) {
-        await html2canvas(ant_col_8, {allowTaint : false, useCORS: true, removeContainer: true})
+
+        await html2canvas(ant_col_8)
             .then((canvas) => {
               const imgData = canvas.toDataURL('png');
-              pdf.addImage(imgData, 'png', 10 + col * canvas.width / 8, 10 + row * canvas.height / 8, canvas.width / 8, canvas.height / 8);
-              col ++;
+              comHeight = canvas.height / 8;
+              comWidth = canvas.width / 8;
+              pdf.addImage(imgData, 'png', ptCol, ptRow, canvas.width / 8, canvas.height / 8);
+              col ++; ptCol += comWidth;
               if( col == 3 ) {
-                col = 0;
-                row ++;
+                col = 0; ptCol = 10;
+                row ++; ptRow += comHeight;
                 if( row == 3 ) {
-                  row = 0;
+                  row = 0; ptRow = 20;
                   pdf.addPage();
                 }
               }
@@ -296,10 +328,10 @@ class DashboardScores extends Component<Props> {
       }
       page_title = ant_row.nextSibling;
       if( page_title ) {
-        col = 0;
-        row ++;
+        col = 0; ptCol = 10;
+        row ++; ptRow += comHeight;
         if( row == 3 ) {
-          row = 0;
+          row = 0; ptRow = 20;
           pdf.addPage();
         }
       }
