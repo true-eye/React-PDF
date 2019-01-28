@@ -327,7 +327,7 @@ class DashboardScores extends Component<Props> {
         ant_col_8 = ant_col_8.nextSibling;
       }
       page_title = ant_row.nextSibling;
-      if( page_title ) {
+      if( page_title && col ) {
         col = 0; ptCol = 10;
         row ++; ptRow += comHeight;
         if( row == 3 ) {
